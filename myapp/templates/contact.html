@@ -8,7 +8,35 @@
 	<title></title>
 </head>
 <body>
-<h1>Welcome To Contact Page</h1>
+	<center>
+		<h1>Welcome To Contact Page</h1>
+		<form method="post" action="{% url 'contact' %}">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td>Name</td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+					<td>Mobile</td>
+					<td><input type="text" name="mobile"></td>
+				</tr>
+				<tr>
+					<td>Remarks</td>
+					<td><textarea rows="5" cols="22" name="remarks"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="submit" name="action" value="SUBMIT" class="btn btn-primary">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</center>
 </body>
 </html>
 {% endblock %}
