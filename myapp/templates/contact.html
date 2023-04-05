@@ -10,6 +10,9 @@
 <body>
 	<center>
 		<h1>Welcome To Contact Page</h1>
+		{% if msg %}
+			<b style="color:blue;">{{msg}}</b>
+		{% endif %}
 		<form method="post" action="{% url 'contact' %}">
 			{% csrf_token %}
 			<table>

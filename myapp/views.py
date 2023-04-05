@@ -13,7 +13,8 @@ def contact(request):
 				mobile=request.POST['mobile'],
 				remarks=request.POST['remarks'],
 			)
-		return render(request,'contact.html')
+		msg="Contact Saved Successfully"
+		return render(request,'contact.html',{'msg':msg})
 	else:
 		return render(request,'contact.html')
 
