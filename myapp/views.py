@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Contact
+from .models import Contact,User
 # Create your views here.
 
 def index(request):
@@ -21,7 +21,20 @@ def contact(request):
 		return render(request,'contact.html',{'contacts':contacts})
 
 def signup(request):
-	return render(request,'signup.html')
+	if request.method=="POST":
+		User.objects.create(
+				fname=request.POST['fname'],
+				lname=request.POST['lname'],
+				email=request.POST['email'],
+				mobile=request.POST['mobile'],
+				gender=request.POST['gender'],
+				address=request.POST['address'],
+				password=request.POST['password'],
+			)
+		msg="User Sign Up Successfully"
+		return render(request,'signup.html',{'msg':msg})
+	else:
+		return render(request,'signup.html')
 
 def login(request):
 	return render(request,'login.html')
