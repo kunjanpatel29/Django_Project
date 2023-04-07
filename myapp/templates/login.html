@@ -8,7 +8,30 @@
 	<title></title>
 </head>
 <body>
-<h1>Welcome To Login Page</h1>
+	<center>
+		<h1>Welcome To Login Page</h1>
+		{% if msg %}
+			<b style="color:blue;">{{msg}}</b>
+		{% endif %}
+		<form method="post" action="{% url 'login' %}">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="submit" name="action" value="Sign Up" class="btn btn-primary">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</center>
 </body>
 </html>
 {% endblock %}
