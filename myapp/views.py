@@ -22,17 +22,26 @@ def contact(request):
 
 def signup(request):
 	if request.method=="POST":
-		User.objects.create(
-				fname=request.POST['fname'],
-				lname=request.POST['lname'],
-				email=request.POST['email'],
-				mobile=request.POST['mobile'],
-				gender=request.POST['gender'],
-				address=request.POST['address'],
-				password=request.POST['password'],
-			)
-		msg="User Sign Up Successfully"
-		return render(request,'signup.html',{'msg':msg})
+		try:
+			user=User.objects.get(email=request.POST['email'])
+			msg="Email Already Registered"
+			return render(request,'signup.html',{'msg':msg})
+		except:
+			if request.POST['password'] == request.POST['cpassword']:
+				User.objects.create(
+						fname=request.POST['fname'],
+						lname=request.POST['lname'],
+						email=request.POST['email'],
+						mobile=request.POST['mobile'],
+						gender=request.POST['gender'],
+						address=request.POST['address'],
+						password=request.POST['password'],
+				)
+				msg="User Sign Up Successfully"
+				return render(request,'signup.html',{'msg':msg})
+			else:
+				msg="Password & Confirm Password Does Not Matched"
+				return render(request,'signup.html',{'msg':msg})
 	else:
 		return render(request,'signup.html')
 
