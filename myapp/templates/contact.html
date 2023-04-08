@@ -18,19 +18,19 @@
 			<table>
 				<tr>
 					<td>Name</td>
-					<td><input type="text" name="name"></td>
+					<td><input type="text" name="name" placeholder="Enter Your Name"></td>
 				</tr>
 				<tr>
 					<td>Email</td>
-					<td><input type="text" name="email"></td>
+					<td><input type="text" name="email" placeholder="Enter Your Email"></td>
 				</tr>
 				<tr>
 					<td>Mobile</td>
-					<td><input type="text" name="mobile"></td>
+					<td><input type="text" name="mobile" placeholder="Enter Your Mobile Number"></td>
 				</tr>
 				<tr>
 					<td>Remarks</td>
-					<td><textarea rows="5" cols="22" name="remarks"></textarea></td>
+					<td><textarea rows="5" cols="22" name="remarks" placeholder="Enter Remarks"></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
@@ -40,8 +40,8 @@
 			</table>
 		</form>
 	</center>
-	<hr>
 	<h1 style="color:green">Recent Contacts:</h1>
+	<hr>
 	{% for i in contacts %}
 		Name : {{i.name}}<br>
 		Remarks : {{i.remarks}}<br><hr>
