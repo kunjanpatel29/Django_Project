@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Contact,User
+
 # Create your views here.
 
 def index(request):
