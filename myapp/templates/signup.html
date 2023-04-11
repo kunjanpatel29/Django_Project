@@ -13,7 +13,7 @@
 		{% if msg %}
 			<b style="color:blue;">{{msg}}</b>
 		{% endif %}
-		<form method="post" action="{% url 'signup' %}">
+		<form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
 			{% csrf_token %}
 			<table>
 				<tr>
@@ -53,7 +53,7 @@
 				</tr>
 				<tr>
 					<td>Profile Pic</td>
-					<td><input type="file" name="profile_pic"></td>
+					<td><input type="file" name="profile_pic" class="form-control"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
