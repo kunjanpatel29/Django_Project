@@ -101,7 +101,7 @@ def forgot_password(request):
 			email_from = settings.EMAIL_HOST_USER
 			recipient_list = [user.email, ]
 			send_mail( subject, message, email_from, recipient_list )
-			
+			return render(request,'otp.html',{'email':user.email,'otp':otp})
 		except:
 			msg="Email Not Registered"
 			return render(request,'forgot-password.html',{'msg':msg}) 			
