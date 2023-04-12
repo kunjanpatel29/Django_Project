@@ -1,5 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Contact,User
+from django.conf import settings
+from django.core.mail import send_mail
+import random
 
 # Create your views here.
 
@@ -92,7 +95,15 @@ def forgot_password(request):
 	if request.method == "POST":
 		try:
 			user=User.objects.get(email=request.POST['email'])
+			otp=random.randint(1000,9999)
+			subject = 'OTP for Forgot Password'
+			message = 'Hello '+user.fname+", Your OTP For Forgot Password Is "+str(otp)
+			email_from = settings.EMAIL_HOST_USER
+			recipient_list = [user.email, ]
+			send_mail( subject, message, email_from, recipient_list )
+			
 		except:
-			pass			
+			msg="Email Not Registered"
+			return render(request,'forgot-password.html',{'msg':msg}) 			
 	else:
 		return render(request,'forgot-password.html')
