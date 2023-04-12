@@ -17,12 +17,16 @@
 			{% csrf_token %}
 			<table>
 				<tr>
+					<td><input type="hidden" name="email" value={{email}}></td>
+					<td><input type="hidden" name="otp" value={{otp}}></td>
+				</tr>
+				<tr>
 					<td>Enter OTP</td>
 					<td><input type="text" name="uotp" class="form-control" placeholder="Enter OTP"></td>
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" name="action" value="Send OTP" class="btn btn-primary">
+						<input type="submit" name="action" value="Verify OTP" class="btn btn-primary">
 					</td>
 				</tr>
 			</table>
