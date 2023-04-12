@@ -89,4 +89,10 @@ def change_password(request):
 		return render(request,'change-password.html')
 
 def forgot_password(request):
-	return render(request,'forgot-password.html')
+	if request.method == "POST":
+		try:
+			user=User.objects.get(email=request.POST['email'])
+		except:
+			pass			
+	else:
+		return render(request,'forgot-password.html')
