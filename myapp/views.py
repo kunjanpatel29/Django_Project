@@ -138,4 +138,4 @@ def new_password(request):
 
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
-	return(request,'profile.html')
+	return render(request,'profile.html',{'user':user})
