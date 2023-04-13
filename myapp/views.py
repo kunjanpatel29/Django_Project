@@ -40,6 +40,7 @@ def signup(request):
 						gender=request.POST['gender'],
 						address=request.POST['address'],
 						password=request.POST['password'],
+						profile_pic=request.FILES['profile_pic'],
 				)
 				msg="User Sign Up Successfully"
 				return render(request,'signup.html',{'msg':msg})
