@@ -118,3 +118,19 @@ def verify_otp(request):
 	else:
 		msg="Invalid OTP"
 		return render(request,'otp.html',{'email':email,'otp':otp,'msg':msg})
+
+def new_password(request):
+	email=request.POST['email']
+	np=request.POST['new_password']
+	cnp=request.POST['cnew_password']
+
+	if np==cnp:
+		user=User.objects.get(email=email)
+		user.password=np
+		user.save()
+		msg="Password Updated Successfully"
+		return render(request,'login.html',{'msg':msg})
+	else:
+		msg="Password & Confirm Password Does Not Matched."
+		return render(request,'new-password.html',{'email':email,'msg':msg})
+
