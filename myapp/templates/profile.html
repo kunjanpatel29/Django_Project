@@ -35,9 +35,14 @@
 				<tr>
 					<td>Gender</td>
 					<td>
-
-						<input type="radio" name="gender" value="male">Male
-						<input type="radio" name="gender" value="female">Female
+						{% if user.gender == "male" %}
+							<input type="radio" name="gender" value="male" checked>Male
+							<input type="radio" name="gender" value="female">Female
+						{% else %}
+							<input type="radio" name="gender" value="male">Male
+							<input type="radio" name="gender" value="female" checked>Female
+						{% endif %}
+						
 					</td>
 				</tr>
 				<tr>
@@ -45,8 +50,13 @@
 					<td><textarea rows="4" cols="22" name="address"  class="form-control" placeholder="Enter Your Address">{{user.address}}</textarea></td>
 				</tr>
 				<tr>
+					<td colspan="2" align="center">
+						<img src="{{user.profile_pic.url}}" width="100px" height="100px">
+					</td>
+				</tr>
+				<tr>
 					<td>Profile Picture</td>
-					<td><input type="file" name="profile_pic" class="form-control" width="100px"></td>
+					<td><input type="file" name="profile_pic" class="form-control"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
