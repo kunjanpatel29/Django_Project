@@ -138,4 +138,19 @@ def new_password(request):
 
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
-	return render(request,'profile.html',{'user':user})
+	if request.method=="POST":
+		user.fname=request.POST['fname']	
+		user.lname=request.POST['lname']
+		user.mobile=request.POST['mobile']
+		user.gender=request.POST['gender']
+		user.address=request.POST['address']
+		try:
+			user.profile_pic=request.FILES['profile_pic']
+		except:
+			pass
+		user.save()
+		msg="Profile Updated Successfully"
+		request.session['profile_pic'] = user.profile_pic.url 
+		return render(request,'profile.html',{'user':user,'msg':msg})
+	else:
+		return render(request,'profile.html',{'user':user})
