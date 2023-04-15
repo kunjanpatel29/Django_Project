@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1>CRUD Operations</h1>
-<form name="index" method="post" action="{% add-task %}">
+<form name="index" method="post" action="{% url 'add-task' %}">
 	{% csrf_token %}
 	<table>
 		<tr>
@@ -22,10 +22,9 @@
 			<td>
 				<select name="staff">
 					<option>---- Select Staff----</option>
-					<option value="trainer">Trainer</option>
-					<option value="counsellor">Counsellor</option>
-					<option value="backoffice">Backoffice</option>
-					<option value="admin">Admin</option>
+					{% for i in staff %}
+						<option value="{{i.pk}}">{{i.staff_category}} - {{i.fname}}</option>
+					{% endfor %}
 				</select>
 			</td>
 		</tr>
