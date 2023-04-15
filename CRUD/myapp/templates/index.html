@@ -14,6 +14,9 @@
 </head>
 <body>
 <h1>CRUD Operations</h1>
+	{% if msg %}
+		<b style="color:blue;">{{msg}}</b>
+	{% endif %}
 <form name="index" method="post" action="{% url 'add-task' %}">
 	{% csrf_token %}
 	<table>
