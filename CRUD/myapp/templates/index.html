@@ -56,5 +56,24 @@
 		</tr>
 	</table>
 </form>
+<h2>Task List</h2>
+<table border="5" width="100%" cellpadding="10px" cellspacing="10px">
+	<tr>
+		<th>Task ID</th>
+		<th>Staff Name</th>
+		<th>Reamarks</th>
+		<th>Date</th>
+		<th>Status</th>
+	</tr>
+	{% for i in tasks %}
+	<tr>
+		<td>{{i.id}}</td>
+		<td>{{i.staff.fname}}</td>
+		<td>{{i.remarks}}</td>
+		<td>{{i.date}}</td>
+		<td>{{i.status}}</td>
+	</tr>
+	{% endfor %}
+</table>
 </body>
 </html>

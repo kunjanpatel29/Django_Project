@@ -4,7 +4,8 @@ from .models import Staff,Task
 # Create your views here.
 def index(request):
 	staff=Staff.objects.all()
-	return render(request,'index.html',{'staff':staff})
+	tasks=Task.objects.all()
+	return render(request,'index.html',{'staff':staff,'tasks':tasks})
 
 def add_task(request):
 	pk=int(request.POST['staff'])
@@ -17,4 +18,6 @@ def add_task(request):
 	)
 	msg="Task Created Successfully"
 	staff=Staff.objects.all()
-	return render(request,'index.html',{'staff':staff,'msg':msg})
+	tasks=Task.objects.all()
+	return render(request,'index.html',{'staff':staff,'msg':msg,'tasks':tasks})
+	
