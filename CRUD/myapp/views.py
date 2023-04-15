@@ -20,4 +20,6 @@ def add_task(request):
 	staff=Staff.objects.all()
 	tasks=Task.objects.all()
 	return render(request,'index.html',{'staff':staff,'msg':msg,'tasks':tasks})
-	
+
+def complete_task(request):
+	pass
