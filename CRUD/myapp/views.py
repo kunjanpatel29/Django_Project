@@ -28,3 +28,15 @@ def complete_task(request):
 	task.save()
 	return redirect('index')
 
+def all_task(request):
+	return redirect('index')
+
+def pending(request):
+	tasks=Task.objects.filter(status="pending")
+	staff=Staff.objects.all()
+	return render(request,'index.html',{'staff':staff,'tasks':tasks})
+
+def completed(request):
+	tasks=Task.objects.filter(status="completed")
+	staff=Staff.objects.all()
+	return render(request,'index.html',{'staff':staff,'tasks':tasks})
