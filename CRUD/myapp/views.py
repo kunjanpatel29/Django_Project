@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Staff,Task
 
 # Create your views here.
@@ -22,4 +22,9 @@ def add_task(request):
 	return render(request,'index.html',{'staff':staff,'msg':msg,'tasks':tasks})
 
 def complete_task(request):
-	pass
+	id=int(request.POST['id'])
+	task=Task.objects.get(pk=id)
+	task.status="completed"
+	task.save()
+	return redirect('index')
+

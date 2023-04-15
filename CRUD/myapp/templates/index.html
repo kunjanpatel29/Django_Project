@@ -79,7 +79,7 @@
 		{% endif %}
 		{% if i.status == "pending" %}
 		<td>
-			<form name="task" method="post" action="{% complete-task %}">
+			<form name="task" method="post" action="{% url 'complete-task' %}">
 				{% csrf_token %}
 				<input type="hidden" name="id" value="{{i.id}}">
 				<input type="submit" name="action" value="Complete Task" class="btn btn-danger">
