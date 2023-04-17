@@ -13,6 +13,7 @@
 	</style>
 </head>
 <body>
+<center>
 <h1 style="color:green">CRUD Operations</h1>
 	{% if msg %}
 		<b style="color:blue;">{{msg}}</b>
@@ -37,12 +38,12 @@
 		</tr>
 		<tr>
 			<td>Date</td>
-			<td><input type="date" name="date"></td>
+			<td><input type="date" name="date" class="form-control"></td>
 		</tr>
 		<tr>
 			<td>Status</td>
 			<td>
-				<select name="status">
+				<select name="status" class="form-control">
 					<option>--Select Status--</option>
 					<option value="pending">Pending</option>
 					<option value="completed">Completed</option>
@@ -56,6 +57,7 @@
 		</tr>
 	</table>
 </form>
+</center>
 <h2>Task List</h2>
 View Task By -  <a href="{% url 'all-task' %}">All</a> || <a href="{% url 'pending' %}">Pending</a> || <a href="{% url 'completed' %}">Completed</a>
 <table border="5" width="100%" cellpadding="10px" cellspacing="10px">
