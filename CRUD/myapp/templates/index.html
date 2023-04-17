@@ -23,7 +23,7 @@
 		<tr>
 			<td>Select Staff</td>
 			<td>
-				<select name="staff">
+				<select name="staff" class="form-control">
 					<option>---- Select Staff----</option>
 					{% for i in staff %}
 						<option value="{{i.pk}}">{{i.staff_category}} - {{i.fname}}</option>
@@ -33,7 +33,7 @@
 		</tr>
 		<tr>
 			<td>Git URL/Remarks</td>
-			<td><input type="text" name="remarks"></td>
+			<td><input type="text" name="remarks" class="form-control"></td>
 		</tr>
 		<tr>
 			<td>Date</td>
