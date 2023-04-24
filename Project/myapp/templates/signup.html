@@ -40,6 +40,9 @@
 							<div class="section-title">
 								<h3 class="title">User Sign Up</h3>
 							</div>
+							{% if msg %}
+								<b style="color:blue;">{{msg}}</b>
+							{% endif %}
 							<form name="signup" method="post" action="{% url 'signup' %}">
 								{% csrf_token %}
 							<div class="form-group">
