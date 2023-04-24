@@ -42,10 +42,13 @@
 			<!-- TOP HEADER -->
 			<div id="top-header">
 				<div class="container">
-
 					<ul class="header-links pull-right">
-						<li><a href="{% url 'signup' %}"><i class="fa fa-user-o"></i> Sign Up</a></li>
-						<li><a href="{% url 'signin' %}"><i class="fa fa-user-o"></i>Sign In</a></li>
+						{% if request.session.email %}
+							<li><a href="{% url 'signout' %}"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+						{% else %}
+							<li><a href="{% url 'signup' %}"><i class="fa fa-user-o"></i> Sign Up</a></li>
+							<li><a href="{% url 'signin' %}"><i class="fa fa-user-o"></i>Sign In</a></li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>

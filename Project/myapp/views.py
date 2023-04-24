@@ -47,3 +47,11 @@ def signin(request):
 			return render(request,'signin.html',{'msg':msg})
 	else:
 		return render(request,'signin.html')
+
+def signout(request):
+	try:
+		del request.session['email']
+		del request.session['fname']
+		return render(request,'signin.html')
+	except:
+		return render(request,'signin.html')
