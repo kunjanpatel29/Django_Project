@@ -44,10 +44,10 @@
 				<div class="container">
 					<ul class="header-links pull-right">
 						{% if request.session.email %}
-							<li><a href="{% url 'signout' %}"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+							<li><a href="{% url 'signout' %}"><i class="fa fa-sign-out"></i> Sign Out</a>({{request.session.fname}})</li>
 						{% else %}
 							<li><a href="{% url 'signup' %}"><i class="fa fa-user-o"></i> Sign Up</a></li>
-							<li><a href="{% url 'signin' %}"><i class="fa fa-user-o"></i>Sign In</a></li>
+							<li><a href="{% url 'signin' %}"><i class="fa fa-sign-in"></i>Sign In</a></li>
 						{% endif %}
 					</ul>
 				</div>
