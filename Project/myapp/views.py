@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import User
 
 # Create your views here.
@@ -57,4 +57,18 @@ def signout(request):
 		return render(request,'signin.html')
 
 def change_password(request):
-	return render(request,'change-password.html')
+	if request.method=="POST":
+		user=User.objects.get(email=request.session['email'])
+		if user.password == request.POST['old_password']:
+			if request.POST['new_password'] == request.POST['cnew_password']:
+				user.password=request.POST['new_password']
+				user.save()
+				return redirect('signout')
+			else:
+				msg="New Password & Confirm New Password Does Not Matched"
+				return render(request,'change-password.html',{'msg':msg})
+		else:
+			msg="Old Password Does Not Matched"
+			return render(request,'change-password.html',{'msg':msg})
+	else:
+		return render(request,'change-password.html')
