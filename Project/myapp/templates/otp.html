@@ -1,0 +1,66 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    </head>
+	<body>
+
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Enter OTP</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="#">Home</a></li>
+							<li class="active">Enter OTP</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-12">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Enter OTP</h3>
+							</div>
+							{% if msg %}
+								<b style="color:blue;">{{msg}}</b>
+							{% endif %}
+							<form name="otp" method="post" action="{% url 'verify-otp' %}">
+								{% csrf_token %}
+						
+							<div class="form-group">
+								<input class="input" type="text" name="mobile" placeholder="Mobile">
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn btn-primary" value="Send OTP">
+							</div>
+							</form>
+						</div>
+						<!-- /Billing Details -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+	</body>
+</html>
+{% endblock %}
