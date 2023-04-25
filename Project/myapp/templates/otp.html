@@ -45,12 +45,13 @@
 							{% endif %}
 							<form name="otp" method="post" action="{% url 'verify-otp' %}">
 								{% csrf_token %}
-						
+								<input type="hidden" name="mobile" value="{{mobile}}">
+								<input type="hidden" name="otp" value="{{otp}}">
 							<div class="form-group">
-								<input class="input" type="text" name="mobile" placeholder="Mobile">
+								<input class="input" type="text" name="uotp" placeholder="Enter OTP">
 							</div>
 							<div class="form-group">
-								<input type="submit" class="btn btn-primary" value="Send OTP">
+								<input type="submit" class="btn btn-primary" value="Verify OTP">	
 							</div>
 							</form>
 						</div>
