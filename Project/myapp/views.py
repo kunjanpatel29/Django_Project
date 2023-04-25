@@ -55,3 +55,6 @@ def signout(request):
 		return render(request,'signin.html')
 	except:
 		return render(request,'signin.html')
+
+def change_password(request):
+	return render(request,'change-password.html')
