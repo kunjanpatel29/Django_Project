@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import User
 import requests
+import random
 
 # Create your views here.
 def index(request):
@@ -75,4 +76,18 @@ def change_password(request):
 		return render(request,'change-password.html')
 
 def forgot_password(request):
-	return render(request,'forgot-password.html')
+	if request.method=="POST":
+		try:
+			user=User.objects.get(mobile=request.POST['mobile'])
+			otp=random.randint(1000,9999)
+			mobile=user.mobile
+			url = "https://www.fast2sms.com/dev/bulkV2"
+			querystring = {"authorization":"KcfR94jq67DeVQokswrEAP0hZJgHOuYTd8GLmviyXFS52zbaM1WjIL9BMCwvbyt0Xmn1qEdSrVp5uDK3","message":str(otp),"language":"english","route":"q","numbers":str(mobile)}
+			headers = {'cache-control': "no-cache"}
+			response = requests.request("GET", url, headers=headers, params=querystring)
+			print(response.text)
+		except:
+			msg="Mobile Number Not Registered"
+			return render(request,'forgot-password.html',{'msg':msg})
+	else:
+		return render(request,'forgot-password.html')
