@@ -24,6 +24,7 @@ def signup(request):
 						city=request.POST['city'],
 						zipcode=request.POST['zipcode'],
 						password=request.POST['password'],
+						profile_pic=request.FILES['profile_pic'],
 					)
 				msg="User Sign Up Successfully"
 				return render(request,'signin.html',{'msg':msg})
@@ -40,6 +41,7 @@ def signin(request):
 			if user.password == request.POST['password']:
 				request.session['email']=user.email
 				request.session['fname']=user.fname
+				request.session['profile_pic']=user.profile_pic.url
 				return render(request,'index.html')
 			else:
 				msg="Invalid Password"
