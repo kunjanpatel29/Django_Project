@@ -121,5 +121,5 @@ def new_password(request):
 		return render(request,'new-password.html',{'mobile':mobile,'msg':msg})
 
 def profile(request):
-	user=User.objects.get(email=request.POST['email'])
+	user=User.objects.get(email=request.session['email'])
 	return render(request,'profile.html',{'user':user})
