@@ -82,7 +82,7 @@ def forgot_password(request):
 			otp=random.randint(1000,9999)
 			mobile=user.mobile
 			url = "https://www.fast2sms.com/dev/bulkV2"
-			querystring = {"authorization":"KcfR94jq67DeVQokswrEAP0hZJgHOuYTd8GLmviyXFS52zbaM1WjIL9BMCwvbyt0Xmn1qEdSrVp5uDK3","message":str(otp),"language":"english","route":"q","numbers":str(mobile)}
+			querystring = {"authorization":"KcfR94jq67DeVQokswrEAP0hZJgHOuYTd8GLmviyXFS52zbaM1WjIL9BMCwvbyt0Xmn1qEdSrVp5uDK3","variables_values":str(otp),"route":"otp","numbers":str(mobile)}
 			headers = {'cache-control': "no-cache"}
 			response = requests.request("GET", url, headers=headers, params=querystring)
 			print(response.text)
@@ -92,3 +92,15 @@ def forgot_password(request):
 			return render(request,'forgot-password.html',{'msg':msg})
 	else:
 		return render(request,'forgot-password.html')
+
+def verify_otp(request):
+	mobile=request.POST['mobile']
+	otp=request.POST['otp']
+	uotp=request.POST['uotp']
+
+	if otp==uotp:
+		return render(request,'new-password.html',{'mobile':mobile})
+	else:
+		msg="Invalid OTP"
+		return render(request,'otp.html',{'mobile':mobile,'otp':otp,'msg':msg})
+
