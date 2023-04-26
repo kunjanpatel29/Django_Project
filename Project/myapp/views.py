@@ -105,4 +105,15 @@ def verify_otp(request):
 		return render(request,'otp.html',{'mobile':mobile,'otp':otp,'msg':msg})
 
 def new_password(request):
-	return render(request,'new-password.html')
+	mobile=request.POST['mobile']
+	np=request.POST['new_password']
+	cnp=request.POST['cnew_password']
+
+	if np==cnp:
+		user=User.objects.get(mobile=mobile)
+		user.password=np
+		user.save()
+		return redirect('signin')
+	else:
+		msg="New Password & Confirm New Password Does Not Matched"
+		return render(request,'new-password.html',{'mobile':mobile,'msg':msg})
