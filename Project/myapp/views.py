@@ -25,6 +25,7 @@ def signup(request):
 						zipcode=request.POST['zipcode'],
 						password=request.POST['password'],
 						profile_pic=request.FILES['profile_pic'],
+						usertype=request.POST['usertype'],
 					)
 				msg="User Sign Up Successfully"
 				return render(request,'signin.html',{'msg':msg})
@@ -88,7 +89,8 @@ def forgot_password(request):
 			headers = {'cache-control': "no-cache"}
 			response = requests.request("GET", url, headers=headers, params=querystring)
 			print(response.text)
-			return render(request,'otp.html',{'mobile':mobile,'otp':otp})
+			msg="OTP Send Successfully"
+			return render(request,'otp.html',{'mobile':mobile,'otp':otp,'msg':msg})
 		except:
 			msg="Mobile Number Not Registered"
 			return render(request,'forgot-password.html',{'msg':msg})
