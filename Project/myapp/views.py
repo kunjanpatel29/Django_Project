@@ -47,6 +47,7 @@ def signin(request):
 				request.session['email']=user.email
 				request.session['fname']=user.fname
 				request.session['profile_pic']=user.profile_pic.url
+				request.session['usertype']=user.usertype
 				return render(request,'index.html')
 			else:
 				msg="Invalid Password"
