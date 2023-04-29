@@ -47,7 +47,11 @@ def signin(request):
 				request.session['fname']=user.fname
 				request.session['profile_pic']=user.profile_pic.url
 				request.session['usertype']=user.usertype
-				return render(request,'index.html')
+
+				if user.usertype=="seller":
+					return render(request,'seller-index.html')
+				else:
+					return render(request,'index.html')
 			else:
 				msg="Invalid Password"
 				return render(request,'signup.html',{'msg':msg})
@@ -140,7 +144,14 @@ def profile(request):
 		except:
 			pass
 		user.save()
-		msg="Profile Updated Successfully"
-		return render(request,'profile.html',{'user':user,'msg':msg})
+		if user.usertype=="seller":
+			msg="Profile Updated Successfully"
+			return render(request,'seller-profile.html',{'user':user,'msg':msg})
+		else:
+			msg="Profile Updated Successfully"
+			return render(request,'profile.html',{'user':user,'msg':msg})
 	else:
-		return render(request,'profile.html',{'user':user})
+		if user.usertype=="seller":
+			return render(request,'seller-profile.html',{'user':user})
+		else:
+			return render(request,'profile.html',{'user':user})
