@@ -70,8 +70,8 @@ def signout(request):
 		return render(request,'signin.html')
 
 def change_password(request):
+	user=User.objects.get(email=request.session['email'])
 	if request.method=="POST":
-		user=User.objects.get(email=request.session['email'])
 		if user.password == request.POST['old_password']:
 			if request.POST['new_password'] == request.POST['cnew_password']:
 				user.password=request.POST['new_password']
@@ -79,12 +79,38 @@ def change_password(request):
 				return redirect('signout')
 			else:
 				msg="New Password & Confirm New Password Does Not Matched"
-				return render(request,'change-password.html',{'msg':msg})
+				if user.usertype=="buyer":
+					return render(request,'change-password.html',{'msg':msg})
+				else:
+					return render(request,'seller-change-password.html',{'msg':msg})		
 		else:
 			msg="Old Password Does Not Matched"
-			return render(request,'change-password.html',{'msg':msg})
+			if user.usertype=="buyer":
+				return render(request,'change-password.html',{'msg':msg})
+			else:
+				return render(request,'seller-change-password.html',{'msg':msg})		
 	else:
-		return render(request,'change-password.html')
+		if user.usertype=="buyer":
+			return render(request,'change-password.html')
+		else:
+			return render(request,'seller-change-password.html')
+
+# def seller_change_password(request):
+# 	if request.method=="POST":
+# 		user=User.objects.get(email=request.session['email'])
+# 		if user.password == request.POST['old_password']:
+# 			if request.POST['new_password'] == request.POST['cnew_password']:
+# 				user.password=request.POST['new_password']
+# 				user.save()
+# 				return redirect('signout')
+# 			else:
+# 				msg="New Password & Confirm New Password Does Not Matched"
+# 				return render(request,'seller-change-password.html',{'msg':msg})
+# 		else:
+# 			msg="Old Password Does Not Matched"
+# 			return render(request,'seller-change-password.html',{'msg':msg})
+# 	else:
+# 		return render(request,'seller-change-password.html')
 
 def forgot_password(request):
 	if request.method=="POST":
@@ -144,14 +170,14 @@ def profile(request):
 		except:
 			pass
 		user.save()
-		if user.usertype=="seller":
-			msg="Profile Updated Successfully"
-			return render(request,'seller-profile.html',{'user':user,'msg':msg})
-		else:
-			msg="Profile Updated Successfully"
+		msg="Profile Updated Successfully"
+		request.session['profile_pic']=user.profile_pic.url
+		if user.usertype=="buyer":
 			return render(request,'profile.html',{'user':user,'msg':msg})
-	else:
-		if user.usertype=="seller":
-			return render(request,'seller-profile.html',{'user':user})
 		else:
+			return render(request,'seller-profile.html',{'user':user,'msg':msg})
+	else:
+		if user.usertype=="buyer":
 			return render(request,'profile.html',{'user':user})
+		else:
+			return render(request,'seller-profile.html',{'user':user})

@@ -8,6 +8,7 @@ urlpatterns = [
     path('seller-index',views.seller_index,name='seller-index'),
     path('signout/',views.signout,name='signout'),
     path('change-password/',views.change_password,name='change-password'),
+    #path('seller-change-password/',views.seller_change_password,name='seller-change-password'),
     path('forgot-password/',views.forgot_password,name='forgot-password'),
     path('verify-otp/',views.verify_otp,name='verify-otp'),
     path('new-password',views.new_password,name='new-password'),
