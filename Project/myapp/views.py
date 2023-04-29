@@ -5,7 +5,14 @@ import random
 
 # Create your views here.
 def index(request):
-	return render(request,'index.html')
+	try:
+		user=User.objects.get(email=request.session['email'])
+		if user.usertype=="buyer":
+			return render(request,'index.html')
+		else:
+			return render(request,'seller-index.html')
+	except:
+		return render(request,'index.html')
 
 def seller_index(request):
 	return render(request,'seller-index.html')
