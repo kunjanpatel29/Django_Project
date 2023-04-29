@@ -5,11 +5,7 @@ import random
 
 # Create your views here.
 def index(request):
-	user=User.objects.get(email=request.session['email'])
-	if user.usertype=="seller":
-		return render(request,'seller-index.html')
-	else:	
-		return render(request,'index.html')
+	return render(request,'index.html')
 
 def signup(request):
 	if request.method=="POST":
