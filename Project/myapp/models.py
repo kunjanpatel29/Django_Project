@@ -15,3 +15,6 @@ class User(models.Model):
 
 	def __str__(self):
 		return self.fname+" "+self.lname
+
+class Product(models.Model):
+	pass
