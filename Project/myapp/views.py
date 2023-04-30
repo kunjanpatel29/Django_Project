@@ -205,3 +205,8 @@ def seller_add_product(request):
 		return render(request,'seller-add-product.html',{'msg':msg})
 	else:
 		return render(request,'seller-add-product.html')
+
+def seller_view_product(request):
+	user=User.objects.get(email=request.session['email'])
+	products=Product.objects.filter(seller=user)
+	return render(request,'seller-view-product.html',{'products':products})
