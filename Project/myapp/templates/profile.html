@@ -43,7 +43,7 @@
 							{% if msg %}
 								<b style="color:blue;">{{msg}}</b>
 							{% endif %}
-							<form name="signup" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+							<form name="profile" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
 								{% csrf_token %}
 							<div class="form-group">
 								<select name="usertype" class="input">
