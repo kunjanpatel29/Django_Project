@@ -188,3 +188,20 @@ def profile(request):
 			return render(request,'profile.html',{'user':user})
 		else:
 			return render(request,'seller-profile.html',{'user':user})
+
+def seller_add_product(request):
+	seller=User.objects.get(email=request.session['email'])
+	if request.method=="POST":
+		Product.objects.create(
+				seller=seller,
+				product_category=request.POST['product_category'],
+				product_name=request.POST['product_name'],
+				product_price=request.POST['product_price'],
+				product_desc=request.POST['product_desc'],
+				product_image=request.FILES['product_image'],
+				product_stock=request.POST['product_stock'],
+			)
+		msg="Product Added Successfully"
+		return render(request,'seller-add-product.html',{'msg':msg})
+	else:
+		return render(request,'seller-add-product.html')
