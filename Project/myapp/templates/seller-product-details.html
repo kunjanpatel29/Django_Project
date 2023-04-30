@@ -38,23 +38,24 @@
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
 										<!-- product -->
-										{% for i in products %}
+										
 										<div class="product">
 											<div class="product-img">
-												<img src="{{i.product_image.url}}" alt="" style="width:200px;height:200px;">
+												<img src="{{product.product_image.url}}" alt="" style="width:200px;height:200px;">
 											</div>
 											<div class="product-body">
-												<p class="product-category">{{i.product_category}}</p>
-												<h3 class="product-name"><a href="#">{{i.product_name}}</a></h3>
-												<h4 class="product-price">{{i.product_price}}</h4>
+												<p class="product-category">{{product.product_category}}</p>
+												<h3 class="product-name"><a href="#"> Name : {{product.product_name}}</a></h3>
+												<h4 class="product-price">
+												Price : {{product.product_price}}</h4>
+												<h4 class="product-description"> Details : {{product.product_desc}}</h4>
 
+												<a href=""><input type="button" value="EDIT" class="btn btn-primary"></a>
+												<a href=""><input type="button" value="DELETE" class="btn btn-danger"></a>	
 											</div>
-											<div class="add-to-cart">
-												<a href="{% url 'seller-product-details' pk=i.pk %}"><button class="add-to-cart-btn">Details</button></a>
-											</div>
+											
 										</div>
 										<!-- /product -->
-										{% endfor %}
 										
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>

@@ -211,6 +211,7 @@ def seller_view_product(request):
 	products=Product.objects.filter(seller=user)
 	return render(request,'seller-view-product.html',{'products':products})
 
-def seller_product_details(request):
+def seller_product_details(request,pk):
 	product=Product.objects.get(pk=pk)
 	return render(request,'seller-product-details.html',{'product':product})
+		
