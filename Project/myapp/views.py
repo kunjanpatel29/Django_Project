@@ -210,3 +210,7 @@ def seller_view_product(request):
 	user=User.objects.get(email=request.session['email'])
 	products=Product.objects.filter(seller=user)
 	return render(request,'seller-view-product.html',{'products':products})
+
+def seller_product_details(request):
+	product=Product.objects.get(pk=pk)
+	return render(request,'seller-product-details.html',{'product':product})
