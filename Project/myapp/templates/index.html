@@ -118,9 +118,11 @@
 													<a href="{% url 'signin' %}"><input type="button" name="signin" value="Login" class="btn btn-primary"></a>
 												{% endif %}
 											</div>
+											{% if request.session.email %}
 											<div class="add-to-cart">
 												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 											</div>
+											{% endif %}
 										</div>
 										<!-- /product -->
 										{% endfor %}

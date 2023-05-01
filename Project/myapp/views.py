@@ -52,15 +52,16 @@ def signin(request):
 		try:
 			user=User.objects.get(email=request.POST['email'])
 			if user.password == request.POST['password']:
-				request.session['email']=user.email
-				request.session['fname']=user.fname
-				request.session['profile_pic']=user.profile_pic.url
-				request.session['usertype']=user.usertype
-
-				if user.usertype=="seller":
-					return render(request,'seller-index.html')
+				if user.usertype=="buyer":
+					request.session['email']=user.email
+					request.session['fname']=user.fname
+					request.session['profile_pic']=user.profile_pic.url
+					return redirect('index')
 				else:
-					return render(request,'index.html')
+					request.session['email']=user.email
+					request.session['fname']=user.fname
+					request.session['profile_pic']=user.profile_pic.url
+					return render(request,'seller-index.html')
 			else:
 				msg="Invalid Password"
 				return render(request,'signup.html',{'msg':msg})
