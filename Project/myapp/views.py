@@ -232,3 +232,5 @@ def seller_edit_product(request,pk):
 	else:
 		return render(request,'seller-edit-product.html',{'product':product})
 
+def seller_delete_product(request):
+	pass
