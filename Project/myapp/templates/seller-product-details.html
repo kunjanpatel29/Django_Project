@@ -50,7 +50,7 @@
 												Price : {{product.product_price}}</h4>
 												<h4 class="product-description"> Details : {{product.product_desc}}</h4>
 
-												<a href=""><input type="button" value="EDIT" class="btn btn-primary"></a>
+												<a href="{% url 'seller-edit-product' pk=product.pk %}"><input type="button" value="EDIT" class="btn btn-primary"></a>
 												<a href=""><input type="button" value="DELETE" class="btn btn-danger"></a>	
 											</div>
 											
