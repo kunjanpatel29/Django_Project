@@ -8,11 +8,13 @@ def index(request):
 	try:
 		user=User.objects.get(email=request.session['email'])
 		if user.usertype=="buyer":
-			return render(request,'index.html')
+			products=Product.objects.all()
+			return render(request,'index.html',{'products':products})
 		else:
 			return render(request,'seller-index.html')
 	except:
-		return render(request,'index.html')
+		products=Product.objects.all()
+		return render(request,'index.html',{'products':products})
 
 def seller_index(request):
 	return render(request,'seller-index.html')
@@ -232,5 +234,7 @@ def seller_edit_product(request,pk):
 	else:
 		return render(request,'seller-edit-product.html',{'product':product})
 
-def seller_delete_product(request):
-	pass
+def seller_delete_product(request,pk):
+	product=Product.objects.get(pk=pk)
+	product.delete()
+	return redirect('seller-view-product')
