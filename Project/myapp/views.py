@@ -239,3 +239,7 @@ def seller_delete_product(request,pk):
 	product=Product.objects.get(pk=pk)
 	product.delete()
 	return redirect('seller-view-product')
+
+def product_details(request,pk):
+	product=Product.objects.get(pk=pk)
+	return render(request,'product-details.html',{'products':products})
