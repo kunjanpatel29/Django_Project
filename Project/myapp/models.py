@@ -32,3 +32,4 @@ class Product(models.Model):
 
 	def __str__(self):
 		return self.seller.fname+" - "+self.product_name
+

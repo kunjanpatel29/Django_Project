@@ -242,4 +242,4 @@ def seller_delete_product(request,pk):
 
 def product_details(request,pk):
 	product=Product.objects.get(pk=pk)
-	return render(request,'product-details.html',{'products':products})
+	return render(request,'product-details.html',{'product':product})
