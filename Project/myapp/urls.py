@@ -19,4 +19,5 @@ urlpatterns = [
     path('seller-edit-product/<int:pk>',views.seller_edit_product,name='seller-edit-product'),
     path('seller-delete-product/<int:pk>',views.seller_delete_product,name='seller-delete-product'),
     path('product-details/<int:pk>',views.product_details,name='product-details'),
+    path('add-to-wishlist/<int:pk>',views.add_to_wishlist,name='add-to-wishlist'),
 ]

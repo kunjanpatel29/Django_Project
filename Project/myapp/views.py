@@ -243,3 +243,9 @@ def seller_delete_product(request,pk):
 def product_details(request,pk):
 	product=Product.objects.get(pk=pk)
 	return render(request,'product-details.html',{'product':product})
+
+def add_to_wishlist(request,pk):
+	product=Product.objects.get(pk=pk)
+	user=User.objects.get(email=request.session['email'])
+	Wishlist.objects.create(product=product,user=user)
+	return render(request,'index.html')

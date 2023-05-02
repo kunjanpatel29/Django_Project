@@ -51,7 +51,7 @@
 												<h4 class="product-description"> Details : {{product.product_desc}}</h4>
 
 												<a href="{% url 'seller-edit-product' pk=product.pk %}"><input type="button" value="Add To Cart" class="btn btn-primary"></a>
-												<a href="{% url 'seller-delete-product' pk=product.pk %}"><input type="button" value="Add To Wishlist" class="btn btn-primary"></a>	
+												<a href="{% url 'add-to-wishlist' pk=product.pk %}"><input type="button" value="Add To Wishlist" class="btn btn-primary"></a>	
 											</div>
 											
 										</div>
