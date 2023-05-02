@@ -253,4 +253,4 @@ def add_to_wishlist(request,pk):
 def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
 	wishlists=Wishlist.objects.filter(user=user)
-	return render(request,'wishlist.html',{'wishlist':wishlist})
+	return render(request,'wishlist.html',{'wishlists':wishlists})
