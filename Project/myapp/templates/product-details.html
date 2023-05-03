@@ -52,7 +52,7 @@
 
 												<a href="{% url 'seller-edit-product' pk=product.pk %}"><input type="button" value="Add To Cart" class="btn btn-primary"></a>
 												{% if wishlist_flag == True %}
-													<a href="{% url 'add-to-wishlist' pk=product.pk %}"><input type="button" value="Remove From Wishlist" class="btn btn-danger"></a>	
+													<a href="{% url 'remove-from-wishlist' pk=product.pk %}"><input type="button" value="Remove From Wishlist" class="btn btn-danger"></a>	
 												{% else %}
 													<a href="{% url 'add-to-wishlist' pk=product.pk %}"><input type="button" value="Add To Wishlist" class="btn btn-primary"></a>	
 												{% endif %}
