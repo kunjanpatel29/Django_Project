@@ -56,6 +56,8 @@ def signin(request):
 					request.session['email']=user.email
 					request.session['fname']=user.fname
 					request.session['profile_pic']=user.profile_pic.url
+					wishlists=Wishlist.objects.filter(user=user)
+					request.session['wishlist_count']=len(wishlists)
 					return redirect('index')
 				else:
 					request.session['email']=user.email
@@ -75,6 +77,7 @@ def signout(request):
 	try:
 		del request.session['email']
 		del request.session['fname']
+		del request.session['wishlist_count']
 		return render(request,'signin.html')
 	except:
 		return render(request,'signin.html')
