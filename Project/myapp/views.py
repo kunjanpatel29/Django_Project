@@ -263,6 +263,7 @@ def add_to_wishlist(request,pk):
 def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
 	wishlists=Wishlist.objects.filter(user=user)
+	request.session['wishlist_count']=len(wishlists)
 	return render(request,'wishlist.html',{'wishlists':wishlists})
 
 def remove_from_wishlist(request,pk):
