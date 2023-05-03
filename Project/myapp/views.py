@@ -263,5 +263,9 @@ def wishlist(request):
 	return render(request,'wishlist.html',{'wishlists':wishlists})
 
 def remove_from_wishlist(request,pk):
-	pass
+	product=Product.objects.get(pk=pk)
+	user=User.objects.get(email=request.session['email'])
+	wishlist=Wishlist.objects.get(user=user,product=product)
+	wishlist.delete()
+	return redirect('wishlist')
 
