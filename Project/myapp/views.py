@@ -273,3 +273,29 @@ def remove_from_wishlist(request,pk):
 	wishlist.delete()
 	return redirect('wishlist')
 
+def add_to_cart(request,pk):
+	product=Product.objects.get(pk=pk)
+	user=User.objects.get(email=request.session['email'])
+	Cart.objects.create(
+		user=user,
+		product=product,
+		product_price=product.product_price,
+		product_qty=1,
+		total_price=product.product_price,
+		payment_status=False
+		)
+	return redirect('cart')
+
+def cart(request):
+	user=User.objects.get(email=request.session['email'])
+	wishlists=Wishlist.objects.filter(user=user)
+	request.session['wishlist_count']=len(wishlists)
+	return render(request,'wishlist.html',{'wishlists':wishlists})
+
+def remove_from_cart(request,pk):
+	product=Product.objects.get(pk=pk)
+	user=User.objects.get(email=request.session['email'])
+	wishlist=Wishlist.objects.get(user=user,product=product)
+	wishlist.delete()
+	return redirect('wishlist')
+
