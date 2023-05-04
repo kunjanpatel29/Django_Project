@@ -58,6 +58,8 @@ def signin(request):
 					request.session['profile_pic']=user.profile_pic.url
 					wishlists=Wishlist.objects.filter(user=user)
 					request.session['wishlist_count']=len(wishlists)
+					carts=Cart.objects.filter(user=user)
+					request.session['cart_count']=len(carts)
 					return redirect('index')
 				else:
 					request.session['email']=user.email
@@ -245,6 +247,7 @@ def seller_delete_product(request,pk):
 
 def product_details(request,pk):
 	wishlist_flag=False
+	cart_flag=False
 	user=User.objects.get(email=request.session['email'])
 	product=Product.objects.get(pk=pk)
 	try:
@@ -252,7 +255,12 @@ def product_details(request,pk):
 		wishlist_flag=True
 	except:
 		pass
-	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag})
+	try:
+		Cart.objects.get(user=user,product=product)
+		cart_flag=True
+	except:
+		pass
+	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag,'cart_flag':cart_flag})
 
 def add_to_wishlist(request,pk):
 	product=Product.objects.get(pk=pk)
