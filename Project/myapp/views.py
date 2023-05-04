@@ -288,14 +288,14 @@ def add_to_cart(request,pk):
 
 def cart(request):
 	user=User.objects.get(email=request.session['email'])
-	wishlists=Wishlist.objects.filter(user=user)
-	request.session['wishlist_count']=len(wishlists)
-	return render(request,'wishlist.html',{'wishlists':wishlists})
+	carts=Cart.objects.filter(user=user)
+	request.session['cart_count']=len(carts)
+	return render(request,'cart.html',{'carts':carts})
 
 def remove_from_cart(request,pk):
 	product=Product.objects.get(pk=pk)
 	user=User.objects.get(email=request.session['email'])
-	wishlist=Wishlist.objects.get(user=user,product=product)
-	wishlist.delete()
-	return redirect('wishlist')
+	cart=Cart.objects.get(user=user,product=product)
+	cart.delete()
+	return redirect('cart')
 
