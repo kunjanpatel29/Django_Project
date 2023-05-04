@@ -50,7 +50,12 @@
 												Price : {{product.product_price}}</h4>
 												<h4 class="product-description"> Details : {{product.product_desc}}</h4>
 
-												<a href="{% url 'seller-edit-product' pk=product.pk %}"><input type="button" value="Add To Cart" class="btn btn-primary"></a>
+												{% if cart_flag == True %}
+													<a href="{% url 'remove-from-cart' pk=product.pk %}"><input type="button" value="Remove From Cart" class="btn btn-danger"></a>	
+												{% else %}
+													<a href="{% url 'add-to-cart' pk=product.pk %}"><input type="button" value="Add To Cart" class="btn btn-primary"></a>	
+												{% endif %}
+
 												{% if wishlist_flag == True %}
 													<a href="{% url 'remove-from-wishlist' pk=product.pk %}"><input type="button" value="Remove From Wishlist" class="btn btn-danger"></a>	
 												{% else %}
