@@ -292,6 +292,8 @@ def add_to_cart(request,pk):
 		total_price=product.product_price,
 		payment_status=False
 		)
+	product.cart_status=True
+	product.save()
 	return redirect('cart')
 
 def cart(request):
@@ -305,5 +307,7 @@ def remove_from_cart(request,pk):
 	user=User.objects.get(email=request.session['email'])
 	cart=Cart.objects.get(user=user,product=product)
 	cart.delete()
+	product.cart_status=False
+	product.save()
 	return redirect('cart')
 
