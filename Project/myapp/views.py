@@ -311,3 +311,5 @@ def remove_from_cart(request,pk):
 	product.save()
 	return redirect('cart')
 
+def change_qty(request):
+	pass
