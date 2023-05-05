@@ -312,4 +312,10 @@ def remove_from_cart(request,pk):
 	return redirect('cart')
 
 def change_qty(request):
-	pass
+	cid=int(request.POST['cid'])
+	product_qty=int(request.POST['product_qty'])
+	cart=Cart.objects.get(pk=cid)
+	cart.product_qty=product_qty 
+	cart.total_price=cart.product_price*product_qty 
+	cart.save()
+	return redirect('cart')
