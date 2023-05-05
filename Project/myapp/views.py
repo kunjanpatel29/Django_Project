@@ -297,10 +297,13 @@ def add_to_cart(request,pk):
 	return redirect('cart')
 
 def cart(request):
+	net_price=0
 	user=User.objects.get(email=request.session['email'])
 	carts=Cart.objects.filter(user=user)
 	request.session['cart_count']=len(carts)
-	return render(request,'cart.html',{'carts':carts})
+	for i in carts:
+		net_price=net_price+i.total_price
+	return render(request,'cart.html',{'carts':carts,'net_price':net_price})
 
 def remove_from_cart(request,pk):
 	product=Product.objects.get(pk=pk)
