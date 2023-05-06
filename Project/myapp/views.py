@@ -60,6 +60,7 @@ def signin(request):
 					request.session['wishlist_count']=len(wishlists)
 					carts=Cart.objects.filter(user=user)
 					request.session['cart_count']=len(carts)
+					request.session['cart']=len(carts)
 					return redirect('index')
 				else:
 					request.session['email']=user.email
