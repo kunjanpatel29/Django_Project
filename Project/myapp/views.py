@@ -332,4 +332,4 @@ def change_qty(request):
 
 def checkout(request):
 	user=User.objects.get(email=request.session['email'])
-	return render(request,'checkout.html')
+	return render(request,'checkout.html',{'user':user})
