@@ -9,7 +9,8 @@ def index(request):
 		user=User.objects.get(email=request.session['email'])
 		if user.usertype=="buyer":
 			products=Product.objects.all()
-			return render(request,'index.html',{'products':products})
+			carts=Cart.objects.filter(user=user)
+			return render(request,'index.html',{'products':products,'carts':carts})
 		else:
 			return render(request,'seller-index.html')
 	except:
@@ -60,7 +61,6 @@ def signin(request):
 					request.session['wishlist_count']=len(wishlists)
 					carts=Cart.objects.filter(user=user)
 					request.session['cart_count']=len(carts)
-					request.session['cart']=len(carts)
 					return redirect('index')
 				else:
 					request.session['email']=user.email
@@ -102,12 +102,14 @@ def change_password(request):
 		else:
 			msg="Old Password Does Not Matched"
 			if user.usertype=="buyer":
-				return render(request,'change-password.html',{'msg':msg})
+				carts=Cart.objects.filter(user=user)
+				return render(request,'change-password.html',{'msg':msg,'carts':carts})
 			else:
 				return render(request,'seller-change-password.html',{'msg':msg})		
 	else:
 		if user.usertype=="buyer":
-			return render(request,'change-password.html')
+			carts=Cart.objects.filter(user=user)
+			return render(request,'change-password.html',{'carts':carts})
 		else:
 			return render(request,'seller-change-password.html')
 
