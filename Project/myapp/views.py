@@ -329,3 +329,6 @@ def change_qty(request):
 	cart.total_price=cart.product_price*product_qty 
 	cart.save()
 	return redirect('cart')
+
+def checkout(request):
+	return render(request,'checkout.html')
