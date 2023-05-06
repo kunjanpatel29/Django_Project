@@ -251,6 +251,7 @@ def seller_delete_product(request,pk):
 	return redirect('seller-view-product')
 
 def product_details(request,pk):
+	carts=Cart.objects.filter(user=user)
 	wishlist_flag=False
 	cart_flag=False
 	user=User.objects.get(email=request.session['email'])
@@ -265,7 +266,7 @@ def product_details(request,pk):
 		cart_flag=True
 	except:
 		pass
-	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag,'cart_flag':cart_flag})
+	return render(request,'product-details.html',{'product':product,'carts':carts,'wishlist_flag':wishlist_flag,'cart_flag':cart_flag})
 
 def add_to_wishlist(request,pk):
 	product=Product.objects.get(pk=pk)
@@ -277,7 +278,8 @@ def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
 	wishlists=Wishlist.objects.filter(user=user)
 	request.session['wishlist_count']=len(wishlists)
-	return render(request,'wishlist.html',{'wishlists':wishlists})
+	carts=Cart.objects.filter(user=user)
+	return render(request,'wishlist.html',{'wishlists':wishlists,'carts':carts})
 
 def remove_from_wishlist(request,pk):
 	product=Product.objects.get(pk=pk)
