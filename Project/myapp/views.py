@@ -191,12 +191,14 @@ def profile(request):
 		msg="Profile Updated Successfully"
 		request.session['profile_pic']=user.profile_pic.url
 		if user.usertype=="buyer":
-			return render(request,'profile.html',{'user':user,'msg':msg})
+			carts=Cart.objects.filter(user=user)
+			return render(request,'profile.html',{'user':user,'msg':msg,'carts':carts})
 		else:
 			return render(request,'seller-profile.html',{'user':user,'msg':msg})
 	else:
 		if user.usertype=="buyer":
-			return render(request,'profile.html',{'user':user})
+			carts=Cart.objects.filter(user=user)
+			return render(request,'profile.html',{'user':user,'carts':carts})
 		else:
 			return render(request,'seller-profile.html',{'user':user})
 
