@@ -333,4 +333,7 @@ def change_qty(request):
 def checkout(request):
 	user=User.objects.get(email=request.session['email'])
 	carts=Cart.objects.filter(user=user)
-	return render(request,'checkout.html',{'user':user,'carts':carts})
+	net_price=0
+	for i in carts:
+		net_price=net_price+i.total_price
+	return render(request,'checkout.html',{'user':user,'carts':carts,'net_price':net_price})
