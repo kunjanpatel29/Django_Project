@@ -332,4 +332,5 @@ def change_qty(request):
 
 def checkout(request):
 	user=User.objects.get(email=request.session['email'])
-	return render(request,'checkout.html',{'user':user})
+	carts=Cart.objects.filter(user=user)
+	return render(request,'checkout.html',{'user':user,'carts':carts})
