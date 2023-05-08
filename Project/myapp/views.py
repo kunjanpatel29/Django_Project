@@ -255,6 +255,10 @@ def cameras(request):
 	products=Product.objects.filter(product_category="Camera")
 	return render(request,"index.html",{'products':products})
 
+def accessories(request):
+	products=Product.objects.filter(product_category="Accessories")
+	return render(request,"index.html",{'products':products})
+
 def seller_delete_product(request,pk):
 	product=Product.objects.get(pk=pk)
 	product.delete()
