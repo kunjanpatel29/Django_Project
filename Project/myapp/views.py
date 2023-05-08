@@ -249,7 +249,11 @@ def seller_edit_product(request,pk):
 
 def laptops(request):
 	products=Product.objects.filter(product_category="Laptop")
-	return render(request,"seller-index.html",{'products':products})
+	return render(request,"index.html",{'products':products})
+
+def cameras(request):
+	products=Product.objects.filter(product_category="Camera")
+	return render(request,"index.html",{'products':products})
 
 def seller_delete_product(request,pk):
 	product=Product.objects.get(pk=pk)

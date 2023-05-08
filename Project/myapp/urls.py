@@ -17,6 +17,8 @@ urlpatterns = [
     path('seller-view-product/',views.seller_view_product,name='seller-view-product'),
     path('seller-product-details/<int:pk>',views.seller_product_details,name='seller-product-details'),
     path('seller-edit-product/<int:pk>',views.seller_edit_product,name='seller-edit-product'),
+    path('laptops/',views.laptops,name='laptops'),
+    path('cameras/',views.cameras,name='cameras'),
     path('seller-delete-product/<int:pk>',views.seller_delete_product,name='seller-delete-product'),
     path('product-details/<int:pk>',views.product_details,name='product-details'),
     path('add-to-wishlist/<int:pk>',views.add_to_wishlist,name='add-to-wishlist'),
@@ -27,5 +29,4 @@ urlpatterns = [
     path('remove-from-cart/<int:pk>',views.remove_from_cart,name='remove-from-cart'),
     path('change-qty',views.change_qty,name="change-qty"),
     path('checkout',views.checkout,name='checkout'),
-    path('laptops/',views.laptops,name='laptops'),
 ]
