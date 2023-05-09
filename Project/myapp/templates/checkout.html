@@ -144,7 +144,7 @@
 		<!-- /NEWSLETTER -->
 		<script type="text/javascript">
 		// Create an instance of the Stripe object with your publishable API key
-		var stripe = Stripe('pk_test_51IvESHSEJXkgN9eEfXq71htC7r3iPvFiOKqvRaBDNqxOVsDoN1keJQz4Ry8xWDQLYdS6MXC1CvHq4YD7jqwF8Cms00n5aUeFev');
+		var stripe = Stripe('pk_test_51N4nx6SFrfJGoBJmLHrwfJUWN9QD8swv7O1kPBtkoiitvYlwuVWKOYylSNtuXxWyUQ6BYi9SkzxpjQcbmtGEPeUU00bD8BIjJH');
 		var checkoutButton = document.getElementById('checkout-button');
 
 		checkoutButton.addEventListener('click', function() {
@@ -152,6 +152,11 @@
 		// created in step 3.
 		fetch('/create-checkout-session/', {
 			method: 'POST',
+			headers:{
+				'Accept': 'application/json',
+				'X-Requested-With': 'XMLHttpRequest',
+			},
+			body: JSON.stringify({'post-data':'{{net_price}}'})
 		 })
 		.then(function(response) {
 		return response.json();
