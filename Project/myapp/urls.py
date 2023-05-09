@@ -22,6 +22,7 @@ urlpatterns = [
     path('cameras/',views.cameras,name='cameras'),
     path('seller-cameras/',views.seller_cameras,name='seller-cameras'),
     path('accessories/',views.accessories,name='accessories'),
+    path('seller-accessories/',views.seller_accessories,name='seller-accessories'),
     path('seller-delete-product/<int:pk>',views.seller_delete_product,name='seller-delete-product'),
     path('product-details/<int:pk>',views.product_details,name='product-details'),
     path('add-to-wishlist/<int:pk>',views.add_to_wishlist,name='add-to-wishlist'),

@@ -269,6 +269,11 @@ def seller_cameras(request):
 	products=Product.objects.filter(seller=seller,product_category="Camera")
 	return render(request,"seller-index.html",{'seller':seller,'products':products})
 
+def seller_accessories(request):
+	seller=User.objects.get(email=request.session['email'])
+	products=Product.objects.filter(seller=seller,product_category="Accessories")
+	return render(request,"seller-index.html",{'seller':seller,'products':products})
+
 def seller_delete_product(request,pk):
 	product=Product.objects.get(pk=pk)
 	product.delete()
