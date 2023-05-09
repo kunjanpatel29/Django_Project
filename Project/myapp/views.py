@@ -12,7 +12,7 @@ def index(request):
 			carts=Cart.objects.filter(user=user)
 			return render(request,'index.html',{'products':products,'carts':carts})
 		else:
-			return render(request,'seller-index.html')
+			return redirect('seller-index')
 	except:
 		products=Product.objects.all()
 		return render(request,'index.html',{'products':products})
@@ -68,7 +68,7 @@ def signin(request):
 					request.session['email']=user.email
 					request.session['fname']=user.fname
 					request.session['profile_pic']=user.profile_pic.url
-					return render(request,'seller-index.html')
+					return redirect('seller-index')
 			else:
 				msg="Invalid Password"
 				return render(request,'signup.html',{'msg':msg})
@@ -259,16 +259,21 @@ def accessories(request):
 	products=Product.objects.filter(product_category="Accessories")
 	return render(request,"index.html",{'products':products})
 
+def seller_laptops(request):
+	seller=User.objects.get(email=request.session['email'])
+	products=Product.objects.filter(seller=seller,product_category="Laptop")
+	return render(request,"seller-index.html",{'seller':seller,'products':products})
+
 def seller_delete_product(request,pk):
 	product=Product.objects.get(pk=pk)
 	product.delete()
 	return redirect('seller-view-product')
 
 def product_details(request,pk):
+	user=User.objects.get(email=request.session['email'])
 	carts=Cart.objects.filter(user=user)
 	wishlist_flag=False
 	cart_flag=False
-	user=User.objects.get(email=request.session['email'])
 	product=Product.objects.get(pk=pk)
 	try:
 		Wishlist.objects.get(user=user,product=product)

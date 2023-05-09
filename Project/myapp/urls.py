@@ -18,6 +18,7 @@ urlpatterns = [
     path('seller-product-details/<int:pk>',views.seller_product_details,name='seller-product-details'),
     path('seller-edit-product/<int:pk>',views.seller_edit_product,name='seller-edit-product'),
     path('laptops/',views.laptops,name='laptops'),
+    path('seller-laptops/',views.seller_laptops,name='seller-laptops'),
     path('cameras/',views.cameras,name='cameras'),
     path('accessories/',views.accessories,name='accessories'),
     path('seller-delete-product/<int:pk>',views.seller_delete_product,name='seller-delete-product'),
