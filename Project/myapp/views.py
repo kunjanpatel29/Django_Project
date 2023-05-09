@@ -366,3 +366,9 @@ def checkout(request):
 	for i in carts:
 		net_price=net_price+i.total_price
 	return render(request,'checkout.html',{'user':user,'carts':carts,'net_price':net_price})
+
+def myorder(request):
+	user=User.objects.get(email=request.session['email'])
+	carts=Cart.objects.filter(user=user,payment_status=True)
+	return render(request,'myorder.html',{'carts':carts})
+
