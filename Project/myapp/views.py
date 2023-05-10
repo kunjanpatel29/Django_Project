@@ -367,6 +367,10 @@ def checkout(request):
 		net_price=net_price+i.total_price
 	return render(request,'checkout.html',{'user':user,'carts':carts,'net_price':net_price})
 
+@csrf_exempt
+def create_checkout_session(request):
+	pass
+
 def myorder(request):
 	user=User.objects.get(email=request.session['email'])
 	carts=Cart.objects.filter(user=user,payment_status=True)
