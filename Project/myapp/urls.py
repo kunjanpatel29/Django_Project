@@ -34,5 +34,7 @@ urlpatterns = [
     path('change-qty',views.change_qty,name="change-qty"),
     path('checkout',views.checkout,name='checkout'),
     path('create-checkout-session/', views.create_checkout_session, name='checkout'),
+    path('success.html/', views.success,name='success'),
+    path('cancel.html/', views.cancel,name='cancel'),
     path('myorder/',views.myorder,name='myorder'),
 ]

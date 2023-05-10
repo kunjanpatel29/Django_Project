@@ -398,6 +398,12 @@ def create_checkout_session(request):
 		cancel_url=YOUR_DOMAIN + '/cancel.html',)
 	return JsonResponse({'id': session.id})
 
+def success(request):
+	return render(request,'success.html')
+
+def cancel(request):
+	return render(request,'cancel.html')
+
 def myorder(request):
 	user=User.objects.get(email=request.session['email'])
 	carts=Cart.objects.filter(user=user,payment_status=True)
