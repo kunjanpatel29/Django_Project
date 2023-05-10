@@ -44,15 +44,15 @@
 												
 												<h3 class="product-name"><a href="#">{{i.product.product_name}}</a></h3>
 												
-												<h4 class="product-price">Price : {{i.product.product_price}}</h4>
+												<h4 class="product-price">Price : ₹ {{i.product.product_price}}</h4>
 
 												<form name="change_qty" method="post" action="{% url 'change-qty' %}">
 													{% csrf_token %}
-													<h4 class="product-price">Quantity:</h4><input type="number" name="product_qty" value="{{i.product_qty}}" min="1" max-="10" onchange="this.form.submit()"> 
+													<h4 class="product-price">Quantity:</h4><input type="number" name="product_qty" value="{{i.product_qty}}" min="1" max="40" onchange="this.form.submit()"> 
 													<input type="hidden" name="cid" value="{{i.pk}}">
 												</form>
 
-												<h4 class="product-price">Total Price : {{i.total_price}}</h4>
+												<h4 class="product-price">Total Price : ₹ {{i.total_price}}</h4>
 												
 												{% if request.session.email %}
 												<div class="product-btns">
