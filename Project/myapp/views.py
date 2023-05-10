@@ -9,6 +9,9 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils import timezone
 
+stripe.api_key = settings.STRIPE_PRIVATE_KEY
+YOUR_DOMAIN = 'http://127.0.0.1:8000'
+
 # Create your views here.
 def index(request):
 	try:
