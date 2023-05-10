@@ -369,7 +369,8 @@ def checkout(request):
 
 @csrf_exempt
 def create_checkout_session(request):
-	pass
+	amount=int(json.load(request)['post_data'])
+	final_amount=amount*100
 
 def myorder(request):
 	user=User.objects.get(email=request.session['email'])
