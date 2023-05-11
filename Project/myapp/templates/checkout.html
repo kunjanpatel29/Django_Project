@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<script src="https://js.stripe.com/v3/"></script>
     </head>
 	<body>
 
@@ -156,7 +157,7 @@
 				'Accept': 'application/json',
 				'X-Requested-With': 'XMLHttpRequest',
 			},
-			body: JSON.stringify({'post-data':'{{net_price}}'})
+			body: JSON.stringify({'post_data':'{{net_price}}'})
 		 })
 		.then(function(response) {
 		return response.json();
