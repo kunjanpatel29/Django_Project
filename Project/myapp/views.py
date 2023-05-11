@@ -399,6 +399,17 @@ def create_checkout_session(request):
 	return JsonResponse({'id': session.id})
 
 def success(request):
+	user=User.objects.get(email=request.session['email'])
+	carts=Cart.objects.filter(user=user,payment_status=False)
+	for i in carts:
+		i.payment_status=True
+		i.save()
+		product=Product.objects.get(id=i.product.id)
+		product.cart_status=False
+		product.save()
+
+	carts=Cart.objects.filter(user=user,payment_status=False)
+	request.session['cart_count']=len(carts)
 	return render(request,'success.html')
 
 def cancel(request):
