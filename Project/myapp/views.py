@@ -18,7 +18,7 @@ def index(request):
 		user=User.objects.get(email=request.session['email'])
 		if user.usertype=="buyer":
 			products=Product.objects.all()
-			carts=Cart.objects.filter(user=user)
+			carts=Cart.objects.get(user=user,payment_status=False)
 			return render(request,'index.html',{'products':products,'carts':carts})
 		else:
 			return redirect('seller-index')
@@ -70,7 +70,7 @@ def signin(request):
 					request.session['profile_pic']=user.profile_pic.url
 					wishlists=Wishlist.objects.filter(user=user)
 					request.session['wishlist_count']=len(wishlists)
-					carts=Cart.objects.filter(user=user)
+					carts=Cart.objects.get(user=user,payment_status=False)
 					request.session['cart_count']=len(carts)
 					return redirect('index')
 				else:
@@ -113,13 +113,13 @@ def change_password(request):
 		else:
 			msg="Old Password Does Not Matched"
 			if user.usertype=="buyer":
-				carts=Cart.objects.filter(user=user)
+				carts=Cart.objects.get(user=user,payment_status=False)
 				return render(request,'change-password.html',{'msg':msg,'carts':carts})
 			else:
 				return render(request,'seller-change-password.html',{'msg':msg})		
 	else:
 		if user.usertype=="buyer":
-			carts=Cart.objects.filter(user=user)
+			carts=Cart.objects.get(user=user,payment_status=False)
 			return render(request,'change-password.html',{'carts':carts})
 		else:
 			return render(request,'seller-change-password.html')
@@ -202,13 +202,13 @@ def profile(request):
 		msg="Profile Updated Successfully"
 		request.session['profile_pic']=user.profile_pic.url
 		if user.usertype=="buyer":
-			carts=Cart.objects.filter(user=user)
+			carts=Cart.objects.get(user=user,payment_status=False)
 			return render(request,'profile.html',{'user':user,'msg':msg,'carts':carts})
 		else:
 			return render(request,'seller-profile.html',{'user':user,'msg':msg})
 	else:
 		if user.usertype=="buyer":
-			carts=Cart.objects.filter(user=user)
+			carts=Cart.objects.get(user=user,payment_status=False)
 			return render(request,'profile.html',{'user':user,'carts':carts})
 		else:
 			return render(request,'seller-profile.html',{'user':user})
@@ -290,7 +290,7 @@ def seller_delete_product(request,pk):
 
 def product_details(request,pk):
 	user=User.objects.get(email=request.session['email'])
-	carts=Cart.objects.filter(user=user)
+	carts=Cart.objects.get(user=user,payment_status=False)
 	wishlist_flag=False
 	cart_flag=False
 	product=Product.objects.get(pk=pk)
@@ -300,7 +300,7 @@ def product_details(request,pk):
 	except:
 		pass
 	try:
-		Cart.objects.get(user=user,product=product)
+		Cart.objects.get(user=user,product=product,payment_status=False)
 		cart_flag=True
 	except:
 		pass
@@ -316,7 +316,7 @@ def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
 	wishlists=Wishlist.objects.filter(user=user)
 	request.session['wishlist_count']=len(wishlists)
-	carts=Cart.objects.filter(user=user)
+	carts=Cart.objects.get(user=user,payment_status=False)
 	return render(request,'wishlist.html',{'wishlists':wishlists,'carts':carts})
 
 def remove_from_wishlist(request,pk):
@@ -344,7 +344,7 @@ def add_to_cart(request,pk):
 def cart(request):
 	net_price=0
 	user=User.objects.get(email=request.session['email'])
-	carts=Cart.objects.filter(user=user)
+	carts=Cart.objects.get(user=user,payment_status=False)
 	request.session['cart_count']=len(carts)
 	for i in carts:
 		net_price=net_price+i.total_price
@@ -370,7 +370,7 @@ def change_qty(request):
 
 def checkout(request):
 	user=User.objects.get(email=request.session['email'])
-	carts=Cart.objects.filter(user=user)
+	carts=Cart.objects.get(user=user,payment_status=False)
 	net_price=0
 	for i in carts:
 		net_price=net_price+i.total_price
