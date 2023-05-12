@@ -70,7 +70,7 @@ def signin(request):
 					request.session['profile_pic']=user.profile_pic.url
 					wishlists=Wishlist.objects.filter(user=user)
 					request.session['wishlist_count']=len(wishlists)
-					carts=Cart.objects.get(user=user,payment_status=False)
+					carts=Cart.objects.filter(user=user,payment_status=False)
 					request.session['cart_count']=len(carts)
 					return redirect('index')
 				else:
@@ -113,13 +113,13 @@ def change_password(request):
 		else:
 			msg="Old Password Does Not Matched"
 			if user.usertype=="buyer":
-				carts=Cart.objects.get(user=user,payment_status=False)
+				carts=Cart.objects.filter(user=user,payment_status=False)
 				return render(request,'change-password.html',{'msg':msg,'carts':carts})
 			else:
 				return render(request,'seller-change-password.html',{'msg':msg})		
 	else:
 		if user.usertype=="buyer":
-			carts=Cart.objects.get(user=user,payment_status=False)
+			carts=Cart.objects.filter(user=user,payment_status=False)
 			return render(request,'change-password.html',{'carts':carts})
 		else:
 			return render(request,'seller-change-password.html')
@@ -202,13 +202,13 @@ def profile(request):
 		msg="Profile Updated Successfully"
 		request.session['profile_pic']=user.profile_pic.url
 		if user.usertype=="buyer":
-			carts=Cart.objects.get(user=user,payment_status=False)
+			carts=Cart.objects.filter(user=user,payment_status=False)
 			return render(request,'profile.html',{'user':user,'msg':msg,'carts':carts})
 		else:
 			return render(request,'seller-profile.html',{'user':user,'msg':msg})
 	else:
 		if user.usertype=="buyer":
-			carts=Cart.objects.get(user=user,payment_status=False)
+			carts=Cart.objects.filter(user=user,payment_status=False)
 			return render(request,'profile.html',{'user':user,'carts':carts})
 		else:
 			return render(request,'seller-profile.html',{'user':user})
