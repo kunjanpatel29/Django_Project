@@ -18,7 +18,7 @@ def index(request):
 		user=User.objects.get(email=request.session['email'])
 		if user.usertype=="buyer":
 			products=Product.objects.all()
-			carts=Cart.objects.get(user=user,payment_status=False)
+			carts=Cart.objects.filter(user=user,payment_status=False)
 			return render(request,'index.html',{'products':products,'carts':carts})
 		else:
 			return redirect('seller-index')
@@ -80,10 +80,10 @@ def signin(request):
 					return redirect('seller-index')
 			else:
 				msg="Invalid Password"
-				return render(request,'signup.html',{'msg':msg})
+				return render(request,'signin.html',{'msg':msg})
 		except:
 			msg="Email Not Registered"
-			return render(request,'signin.html',{'msg':msg})
+			return render(request,'signup.html',{'msg':msg})
 	else:
 		return render(request,'signin.html')
 
@@ -316,7 +316,7 @@ def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
 	wishlists=Wishlist.objects.filter(user=user)
 	request.session['wishlist_count']=len(wishlists)
-	carts=Cart.objects.get(user=user,payment_status=False)
+	carts=Cart.objects.filter(user=user,payment_status=False)
 	return render(request,'wishlist.html',{'wishlists':wishlists,'carts':carts})
 
 def remove_from_wishlist(request,pk):
