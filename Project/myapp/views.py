@@ -420,3 +420,12 @@ def myorder(request):
 	carts=Cart.objects.filter(user=user,payment_status=True)
 	return render(request,'myorder.html',{'carts':carts})
 
+def seller_order(request):
+	seller=User.objects.get(email=request.session['email'])
+	carts=Cart.objects.filter(payment_status=True)
+	orders=[]
+	for i in carts:
+		if i.product.seller==seller:
+			orders.append(i)
+	print(orders)
+	return render(request,'seller-order.html',{'orders':orders})
