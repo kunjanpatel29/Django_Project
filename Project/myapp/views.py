@@ -290,7 +290,7 @@ def seller_delete_product(request,pk):
 
 def product_details(request,pk):
 	user=User.objects.get(email=request.session['email'])
-	carts=Cart.objects.get(user=user,payment_status=False)
+	carts=Cart.objects.filter(user=user,payment_status=False)
 	wishlist_flag=False
 	cart_flag=False
 	product=Product.objects.get(pk=pk)
@@ -344,7 +344,7 @@ def add_to_cart(request,pk):
 def cart(request):
 	net_price=0
 	user=User.objects.get(email=request.session['email'])
-	carts=Cart.objects.get(user=user,payment_status=False)
+	carts=Cart.objects.filter(user=user,payment_status=False)
 	request.session['cart_count']=len(carts)
 	for i in carts:
 		net_price=net_price+i.total_price
@@ -370,7 +370,7 @@ def change_qty(request):
 
 def checkout(request):
 	user=User.objects.get(email=request.session['email'])
-	carts=Cart.objects.get(user=user,payment_status=False)
+	carts=Cart.objects.filter(user=user,payment_status=False)
 	net_price=0
 	for i in carts:
 		net_price=net_price+i.total_price
