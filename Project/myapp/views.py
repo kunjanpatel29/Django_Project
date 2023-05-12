@@ -353,7 +353,7 @@ def cart(request):
 def remove_from_cart(request,pk):
 	product=Product.objects.get(pk=pk)
 	user=User.objects.get(email=request.session['email'])
-	cart=Cart.objects.get(user=user,product=product)
+	cart=Cart.objects.filter(user=user,product=product)
 	cart.delete()
 	product.cart_status=False
 	product.save()
