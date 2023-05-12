@@ -53,6 +53,12 @@
 												</form>
 
 												<h4 class="product-price">Total Price : ₹ {{i.total_price}}</h4>
+												<h4 class="product-price"> Purchased By : {{i.user.fname}}</h4>
+												{% if i.payment_status == True %}
+													<h4 class="product-price"> Payment Status : Paid</h4>
+												{% else %}
+													<h4 class="product-price"> Payment Status : Pending</h4>
+												{% endif %}
 												
 											</div>
 					
@@ -65,8 +71,7 @@
 								</div>
 								<!-- /tab -->
 							</div>
-						</div>
-						<h1>Net Price To Pay : {{net_price}}</h1>
+						</div>	
 					</div>
 					<!-- Products tab & slick -->
 				</div>
