@@ -410,7 +410,7 @@ def success(request):
 
 	carts=Cart.objects.filter(user=user,payment_status=False)
 	request.session['cart_count']=len(carts)
-	return render(request,'success.html',{'user':user})
+	return render(request,'success.html')
 
 def cancel(request):
 	return render(request,'cancel.html')
