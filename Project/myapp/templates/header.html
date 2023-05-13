@@ -130,8 +130,7 @@
 											{% endfor %}
 										</div>
 										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
+											<h5>SUBTOTAL: {{i.total_price}}</h5>
 										</div>
 										<div class="cart-btns">
 											<a href="{% url 'cart' %}">View Cart</a>
