@@ -66,6 +66,28 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+
+		<script>
+			$("#email").change(function(){
+				var email = $(this).val();
+
+				$.ajax({
+					url:'/ajax/validate_email/',
+					data:{
+						'email':email
+					},
+					datatype: 'json',
+					success: function(data){
+						if(data.is_taken)
+						{
+							document.getElementById("email_error").innerHTML="This Email Id is Already Registered."
+						}else{
+							document.getElementById("email_error").innerHTML="";
+						}
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
 {% endblock %}
