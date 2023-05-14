@@ -78,9 +78,9 @@
 					},
 					datatype: 'json',
 					success: function(data){
-						if(data.is_taken)
+						if(!data.is_taken)
 						{
-							document.getElementById("email_error").innerHTML="This Email Id is Already Registered."
+							document.getElementById("email_error").innerHTML="This Email Id is Not Registered."
 						}else{
 							document.getElementById("email_error").innerHTML="";
 						}
