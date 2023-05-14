@@ -47,7 +47,8 @@
 								{% csrf_token %}
 						
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								<input class="input" type="email" id="email" name="email" placeholder="Email">
+								<span id="email_error"></span>
 							</div>
 							<div class="form-group">
 								<input class="input" type="password" name="password" placeholder="Password">
