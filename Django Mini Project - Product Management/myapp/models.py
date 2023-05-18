@@ -9,6 +9,9 @@ class Admin(models.Model):
 	class Meta:
 		db_table='Product_mst'
 
+	def __str__(self):
+		return self.product_name
+
 class Product_Subcategory(models.Model):
 	
 	product=models.ForeignKey(Admin,on_delete=models.CASCADE)
