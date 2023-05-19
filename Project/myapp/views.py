@@ -19,6 +19,13 @@ def validate_email(request):
 	}
 	return JsonResponse(data)
 
+def validate_mobile(request):
+	mobile = request.GET.get('mobile')
+	data = {
+		'is_taken': User.objects.filter(mobile__iexact=mobile).exists()
+	}
+	return JsonResponse(data)
+
 # Create your views here.
 def index(request):
 	try:

@@ -38,5 +38,6 @@ urlpatterns = [
     path('cancel.html/', views.cancel,name='cancel'),
     path('myorder/',views.myorder,name='myorder'),
     path('seller-order/',views.seller_order,name='seller-order'),
-    path('ajax/validate_email/',views.validate_signup,name='validate_email')
+    path('ajax/validate_email/',views.validate_signup,name='validate_email'),
+    path('ajax/validate_mobile/',views.validate_mobile,name='validate_mobile'),
 ]
