@@ -116,6 +116,28 @@
 				});
 			});
 		</script>
+
+		<script>
+			$("#mobile").change(function(){
+				var mobile = $(this).val();
+
+				$.ajax({
+					url:'/ajax/validate_mobile/',
+					data:{
+						'mobile':mobile
+					},
+					datatype: 'json',
+					success: function(data){
+						if(data.is_taken)
+						{
+							document.getElementById("mobile_error").innerHTML="This Mobile Number is Already Registered."
+						}else{
+							document.getElementById("mobile_error").innerHTML="";
+						}
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
 {% endblock %}

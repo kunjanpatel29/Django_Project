@@ -12,7 +12,7 @@ from django.utils import timezone
 stripe.api_key = settings.STRIPE_PRIVATE_KEY
 YOUR_DOMAIN = 'http://127.0.0.1:8000'
 
-def validate_signup(request):
+def validate_email(request):
 	email = request.GET.get('email')
 	data = {
 		'is_taken': User.objects.filter(email__iexact=email).exists()
