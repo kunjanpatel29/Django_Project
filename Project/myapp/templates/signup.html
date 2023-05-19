@@ -75,10 +75,11 @@
 								<input class="input" type="text" name="zipcode" placeholder="ZIP Code">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" placeholder="Password">
+								<input class="input" type="password" id="pwd" name="password" placeholder="Password">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="cpassword" placeholder="Confirm Password">
+								<input class="input" type="password"  id="cpwd" name="cpassword" placeholder="Confirm Password">
+								<span id="confirm_pwd_error"></span>
 							</div>
 							<div class="form-group">
 								<input class="input" type="file" name="profile_pic">
@@ -133,6 +134,30 @@
 							document.getElementById("mobile_error").innerHTML="This Mobile Number is Already Registered."
 						}else{
 							document.getElementById("mobile_error").innerHTML="";
+						}
+					}
+				});
+			});
+		</script>
+
+		<script>
+			$("#cpwd").change(function(){
+				var pwd = $("#pwd").val();
+				var cpwd = $("#cpwd").val();
+
+				$.ajax({
+					url:'/ajax/validate_pwd/',
+					data:{
+						'pwd':pwd,
+						'cpwd':cpwd
+					},
+					datatype: 'json',
+					success: function(data){
+						if(data.is_taken)
+						{
+							document.getElementById("confirm_pwd_error").innerHTML="Password and Confirm Password Does Not Matched."
+						}else{
+							document.getElementById("confirm_pwd_error").innerHTML="";
 						}
 					}
 				});
