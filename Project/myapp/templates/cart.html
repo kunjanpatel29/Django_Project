@@ -70,7 +70,7 @@
 													</div>
 												{% else %}
 													<div class="add-to-cart">
-														<a href="{% url 'remove-from-cart' pk=i.pk %}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> remove from cart</button></a>
+														<a href="{% url 'remove-from-cart' pk=i.product.pk %}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> remove from cart</button></a>
 													</div>
 												{% endif %}
 											{% endif %}
