@@ -18,4 +18,8 @@ def add(request):
 		product=Admin.objects.all()
 		return render(request,'index.html',{'product':product})
 
+def edit(request):
+	product=Admin.objects.all()
+	return redirect(request,'index.html',{'product':product})
+
 
