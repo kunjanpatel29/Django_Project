@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from . models import Admin
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -51,3 +52,13 @@ def delete(request,id):
 
 def product_manager(request):
 		return render(request,'table.html')
+
+def search(request):
+	if 'q' in request.GET:
+		q = request.GET['q']
+		multiple_q = Q(Q(product_name__icontains=q) | Q(product_price__icontains=q) | Q(product_model__icontains=q) | Q(product_ram__icontains=q))
+		product=Admin.objects.filter(multiple_q)
+		return render(request,'table.html',{'product':product})
+	else:
+		msg="This item is not in your table"		
+		return render(request,'table.html',{'msg':msg})
