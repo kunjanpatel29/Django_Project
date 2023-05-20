@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Admin,Product_Subcategory
+from .models import Admin
 
 # Register your models here.
 admin.site.register(Admin)
-admin.site.register(Product_Subcategory)
