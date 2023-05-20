@@ -33,10 +33,19 @@ def update(request,id):
 				product_name=product_name,
 				product_price=product_price,
 				product_model=product_model,
-				product_ram=product_ram	
+				product_ram=product_ram,	
 			)
 		data.save()
 		return redirect('index')
 	else:
 		product=Admin.objects.all()
 		return redirect(request,'index.html',{'product':product})
+
+def delete(request,id):
+	product=Admin.objects.filter(id=id)
+	product.delete()
+	context={
+		'product':product
+	}
+	return redirect('index')
+
