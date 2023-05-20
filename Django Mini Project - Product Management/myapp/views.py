@@ -9,11 +9,11 @@ def index(request):
 def add(request):
 	if request.method=="POST":
 		Admin.objects.create(
-				product_name=request.POST['name'],
-				product_price=request.POST['price'],
-				product_model=request.POST['model'],
-				product_image=request.FILES['image'],
-				product_ram=request.POST['ram']
+				product_name=request.POST['product_name'],
+				product_price=request.POST['product_price'],
+				product_model=request.POST['product_model'],
+				product_image=request.FILES['product_image'],
+				product_ram=request.POST['product_ram']
 			)
 		product=Admin.objects.all()
 		return render(request,'index.html',{'product':product})
@@ -33,7 +33,7 @@ def update(request,id):
 				product_name=product_name,
 				product_price=product_price,
 				product_model=product_model,
-				product_ram=product_ram,	
+				product_ram=product_ram	
 			)
 		data.save()
 		return redirect('index')
@@ -49,3 +49,5 @@ def delete(request,id):
 	}
 	return redirect('index')
 
+def product_manager(request):
+		return render(request,'table.html')
