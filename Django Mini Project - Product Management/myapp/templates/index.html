@@ -264,7 +264,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                	{% for i in data %}
+                	{% for i in product %}
                     <tr>
                         <td>{{i.product_name}}</td>
                         <td>{{i.product_price}}</td>
@@ -330,7 +330,7 @@
 
 
 	<!-- Edit Modal HTML -->
-	{% for i in data %}
+	{% for i in product %}
 	<div id="editEmployeeModal-{{forloop.counter}}" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -373,7 +373,7 @@
 
 	<!-- Delete Modal HTML -->
 
-	{% for i in data %}
+	{% for i in product %}
 	<div id="deleteEmployeeModal-{{forloop.counter}}" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
