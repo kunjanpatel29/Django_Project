@@ -31,5 +31,22 @@ def signup(request):
 	else:
 		return render(request,'signup.html')
 
+def signin(request):
+	if request.method=="POST":
+		try:
+			user=User.objects.get(email=request.POST['email'])
+			if user.password == request.POST['password']:
+				request.session['email']=user.email
+				request.session['fname']=user.fname
+				return render(request,'index.html')
+			else:
+				msg="Invalid Password"
+				return render(request,'signin.html',{'msg':msg})
+		except:
+			msg="Email Not Registered"
+			return render(request,'signup.html',{'msg':msg})
+	else:
+		return render(request,'signin.html')
+
 def about(request):
 	return render(request,'about.html')
