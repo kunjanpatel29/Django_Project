@@ -1,0 +1,55 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="col-md-12">
+		<div class="section-title">
+			<h3 class="title">User Sign Up</h3>
+		</div>
+		{% if msg %}
+			<b style="color:blue;">{{msg}}</b>
+		{% endif %}
+		<form name="signup" method="post" action="{% url 'signup' %}">
+			{% csrf_token %}
+			<div class="form-group">
+				<input class="form-control" type="text" name="fname" placeholder="First Name">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="lname" placeholder="Last Name">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="email" name="email" placeholder="Email">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="mobile" placeholder="Mobile">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="address" placeholder="Address">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="city" placeholder="City">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="zipcode" placeholder="ZIP Code">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="password" name="password" placeholder="Password">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="password" name="cpassword" placeholder="Confirm Password">
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="Sign Up">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+
+{% endblock %}
