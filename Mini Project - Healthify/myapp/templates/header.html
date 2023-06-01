@@ -54,7 +54,7 @@
                 <a class="btn btn-primary ml-lg-3" href="{% url 'signout' %}">Sign out({{request.session.fname}})</a>
               {% else %}
               	<a class="btn btn-primary ml-lg-3" href="{% url 'signup' %}">Sign Up</a>
-                <a class="btn btn-primary ml-lg-3" href="#">Sign In</a>
+                <a class="btn btn-primary ml-lg-3" href="{% url 'signin' %}">Sign In</a>
               {% endif %}
             
             </li>

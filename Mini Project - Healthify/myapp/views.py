@@ -24,7 +24,7 @@ def signup(request):
 						password=request.POST['password'],
 					)
 				msg="User Sign Up Successfully"
-				return render(request,'signup.html',{'msg':msg})
+				return render(request,'signin.html',{'msg':msg})
 			else:
 				msg="Password & Confirm Password Does Not Matched"
 				return render(request,'signup.html',{'msg':msg})

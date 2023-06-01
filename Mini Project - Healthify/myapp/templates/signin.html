@@ -1,0 +1,33 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="col-md-12">
+		<div class="section-title">
+			<h3 class="title">User Sign In</h3>
+		</div>
+	{% if msg %}
+		<b style="color:blue;">{{msg}}</b>
+	{% endif %}
+	<form name="signin" method="post" action="{% url 'signin' %}">
+		{% csrf_token %}
+		<div class="form-group">
+			<input class="form-control" type="email" name="email" placeholder="Email">
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="password" name="password" placeholder="Password">
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Sign In">
+		</div>
+	</form>
+</body>
+</html>
+{% endblock %}
+s
