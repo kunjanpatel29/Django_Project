@@ -75,3 +75,6 @@ def change_password(request):
 			return render(request,'change-password.html',{'msg':msg})
 	else: 
 		return render(request,'change-password.html')
+
+def profile(request):
+	return render(request,'profile.html')

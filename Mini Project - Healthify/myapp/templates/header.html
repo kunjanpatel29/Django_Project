@@ -53,6 +53,7 @@
               {% if request.session.email %}
                 <a class="btn btn-primary ml-lg-3" href="{% url 'change-password' %}">Change Password</a>
                 <a class="btn btn-primary ml-lg-3" href="{% url 'signout' %}">Sign out({{request.session.fname}})</a>
+                <a href="{% url 'profile' %}"><img src="{{request.session.profile_pic}}" width="50px" height="50px"></a>
               {% else %}
               	<a class="btn btn-primary ml-lg-3" href="{% url 'signup' %}">Sign Up</a>
                 <a class="btn btn-primary ml-lg-3" href="{% url 'signin' %}">Sign In</a>
