@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import User
+from .models import User,Contact
 
 # Create your views here.
 def index(request):
@@ -58,6 +58,21 @@ def signout(request):
 
 def about(request):
 	return render(request,'about.html')
+
+def contact(request):
+	if request.method=="POST":
+		Contact.objects.create(
+				name=request.POST['name'],
+				email=request.POST['email'],
+				mobile=request.POST['mobile'],
+				remarks=request.POST['remarks'],
+			)
+		# contacts=Contact.objects.all().order_by("-id")[:5]
+		msg="Contact Saved Successfully"
+		return render(request,'contact.html',{'msg':msg})
+	else:
+		# contacts=Contact.objects.all().order_by("-id")[:5]
+		return render(request,'contact.html')
 
 def change_password(request):
 	if request.method=="POST":
