@@ -14,3 +14,12 @@ class User(models.Model):
 
 	def __str__(self):
 		return self.fname+" "+self.lname
+
+class Contact(models.Model):
+	name=models.CharField(max_length=100)
+	email=models.EmailField()
+	mobile=models.PositiveIntegerField()
+	remarks=models.TextField()
+	
+	def __str__(self):
+		return self.name 
