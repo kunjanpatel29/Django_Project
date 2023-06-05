@@ -8,6 +8,7 @@ urlpatterns = [
     path('signin/',views.signin,name='signin'),
     path('forgot-password/',views.forgot_password,name='forgot-password'),
     path('signout/',views.signout,name='signout'),
+    path('verify-otp/',views.verify_otp,name='verify-otp'),
     path('change-password/',views.change_password,name='change-password'),
     path('profile/',views.profile,name='profile'),
     path('contact/',views.contact,name='contact'),

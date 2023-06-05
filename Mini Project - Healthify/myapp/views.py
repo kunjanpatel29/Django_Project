@@ -111,6 +111,17 @@ def forgot_password(request):
 	else:
 		return render(request,'forgot-password.html')
 
+def verify_otp(request):
+	email=request.POST['email']
+	otp=request.POST['otp']
+	uotp=request.POST['uotp']
+
+	if otp==uotp:
+		return render(request,'new-password.html',{'email':email})
+	else:
+		msg="Invalid OTP"
+		return render(request,'otp.html',{'email':email,'otp':otp,'msg':msg})
+
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
 	if request.method=="POST":
