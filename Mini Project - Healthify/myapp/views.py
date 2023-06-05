@@ -94,6 +94,9 @@ def change_password(request):
 	else: 
 		return render(request,'change-password.html')
 
+def forgot_password(request):
+	return render(request,'forgot-password.html')
+
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
 	if request.method=="POST":
