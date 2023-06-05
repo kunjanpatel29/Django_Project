@@ -95,7 +95,21 @@ def change_password(request):
 		return render(request,'change-password.html')
 
 def forgot_password(request):
-	return render(request,'forgot-password.html')
+	if request.method == "POST":
+		try:
+			user=User.objects.get(email=request.POST['email'])
+			otp=random.randint(1000,9999)
+			subject = 'OTP for Forgot Password'
+			message = 'Hello '+user.fname+", Your OTP For Forgot Password Is "+str(otp)
+			email_from = settings.EMAIL_HOST_USER
+			recipient_list = [user.email, ]
+			send_mail( subject, message, email_from, recipient_list )
+			return render(request,'otp.html',{'email':user.email,'otp':otp})
+		except:
+			msg="Email Not Registered"
+			return render(request,'forgot-password.html',{'msg':msg}) 			
+	else:
+		return render(request,'forgot-password.html')
 
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
