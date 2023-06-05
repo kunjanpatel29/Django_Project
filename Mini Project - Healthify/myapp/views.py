@@ -59,6 +59,9 @@ def signout(request):
 def about(request):
 	return render(request,'about.html')
 
+def doctors(request):
+	return render(request,'doctors.html')
+
 def contact(request):
 	if request.method=="POST":
 		Contact.objects.create(
