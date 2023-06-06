@@ -122,6 +122,9 @@ def verify_otp(request):
 		msg="Invalid OTP"
 		return render(request,'otp.html',{'email':email,'otp':otp,'msg':msg})
 
+def new_password(request):
+	return render(request,'new-password.html')
+
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
 	if request.method=="POST":
