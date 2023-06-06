@@ -1,5 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import User,Contact
+from django.conf import settings
+from django.core.mail import send_mail
+import random
 
 # Create your views here.
 def index(request):
@@ -123,7 +126,19 @@ def verify_otp(request):
 		return render(request,'otp.html',{'email':email,'otp':otp,'msg':msg})
 
 def new_password(request):
-	return render(request,'new-password.html')
+	email=request.POST['email']
+	np=request.POST['new_password']
+	cnp=request.POST['cnew_password']
+
+	if np==cnp:
+		user=User.objects.get(email=email)
+		user.password=np
+		user.save()
+		msg="Password Updated Successfully"
+		return render(request,'signin.html',{'msg':msg})
+	else:
+		msg="Password & Confirm Password Does Not Matched."
+		return render(request,'new-password.html',{'email':email,'msg':msg})
 
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
